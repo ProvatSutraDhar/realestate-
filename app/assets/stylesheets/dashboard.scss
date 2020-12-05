@@ -1,8 +1,7 @@
 // Place all the styles related to the dashboard controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
-#dashboard, #properties{
-
+.show-sidebar{
 .feather {
   width: 16px;
   height: 16px;
@@ -60,6 +59,7 @@
 /*
  * Navbar
  */
+
 
 .navbar-brand {
   padding-top: .75rem;
