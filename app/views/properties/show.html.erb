@@ -6,42 +6,62 @@
 
 <div class="container mt-5">
   <div class="row">
-    <div class="col">
-      <div class="col-8">
+      <div class="col-md-8">
+        <div class="row">
+            <div class="col-lg-6">
+                <p class="mb-0"><%= @property.address %>  </p>
+                <p class="h2">   <%= @property.price > 0 ? number_to_currency(@property.price, precision: 0) : "For Sell"%></p>
+            </div>
+                <div class="col-lg-6 text-center  ">
+                  <div class="row bg-light  p-3">
+                      <div class="col-sm-4">
+                        <p class="mb-0"> <strong>Rooms:</strong> </p>
+                        <span class="lead">   <%= @property.rooms %> </span>
+                      </div>
+                      <div class="col-sm-4">
+                        <p class="mb-0">   <strong>Bathrooms:</strong> </p>
+                        <span class="lead"> <%= @property.bathrooms %> </span>
+                      </div>
+                      <div class="col-sm-4">
+                        <p class="mb-0">  <strong>Parkings:</strong></p>
+                        <span class="lead"> <%= @property.parking_spaces %> </span>
+                      </div>
+                  </div>
+              </div>
+        </div>
 
-          <p>
-            <strong>Name:</strong>
-            <%= @property.name %>
-          </p>
+        <div class="row border-bottom border-top mt-5 mb-5 pt-3 pb-3">
+          <div class="col-sm-6">
+            <%= link_to "Est. Monthly Repayments of #{number_to_currency((@property.price - (@property.price * 0.1))/ 360 , precision: 0)}", "#",class:"text-success"%>
+            <p ></p>
+          </div>
 
-          <p>
-            <strong>Address:</strong>
-            <%= @property.address %>
-          </p>
+          <div class="col-sm-6 text-right">
+            <%= link_to "Can I afford this property?", "#", class: "text-success " %>
+          </div>
+      </div>
+        <div class="row ">
+          <div class="col-sm">
+            <p class="h3"> <%= @property.name  %> </p>
 
-          <p>
-            <strong>Price:</strong>
-            <%= @property.price %>
-          </p>
+            <div id="prop-details">
+              <p class="h5"> Property Details:</p>
+                 <%= simple_format @property.description %>
+            </div>
+            <button class="btn btn-sm btn-outline-info mb-t" id="toggleDetails">Read more</button>
+            <p class="mt-5"> *This rate is based on a 30 year of mortgage, after paying an initial 10% down payment. Shorter term mortgage wpold require a higher month repayments.</p>
+          </div>
+        </div>
 
-          <p>
-            <strong>Rooms:</strong>
-            <%= @property.rooms %>
-          </p>
-
-          <p>
-            <strong>Bathrooms:</strong>
-            <%= @property.bathrooms %>
-          </p>
 
           <%= link_to 'Edit', edit_property_path(@property), class: "btn btn-sm btn-success" %>
           <%= link_to 'Back', root_path, class: "btn btn-sm btn-secondary"  %>
         </div>
-      </div>
 
-      <div class="col-4">
-        <%= render 'properties/agent_details'%>
+        <div class="col-4">
+          <%= render 'properties/agent_details'%>
+        </div>
+
       </div>
 
     </div>
-  </div>

@@ -9,3 +9,12 @@
   background-size: cover;
   height: 500px;
 }
+
+#prop-details{
+  height: 150px;
+  overflow: hidden;
+
+  &.open{
+    height: auto;
+  }
+}
