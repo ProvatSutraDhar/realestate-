@@ -1,0 +1,24 @@
+<% properties.each do |property|%>
+    <div class="col-4">
+      <div class=" p-3 mb-2 card">
+        <div class="property-thumb" style="background-image: url(<%= property_thumbnail_url(property)%>)">
+          <%= link_to "", property_path(property)%>
+        </div>
+
+         <div class="pro-summery mb-2 p-3">
+          <h3 class="h6"><%=link_to property.name, property_path(property), class: "text-dark"%></h3>
+            <span class="mr-2 text-muted ml-1">
+              <i class="fas fa-bed"></i> <%=property.rooms%>
+            </span>
+            <span class="mr-2 text-muted ml-1">
+              <i class="fas fa-bath"></i> <%=property.bathrooms%>
+            </span>
+            <span class="mr-2 text-muted ml-1">
+              <i class="fas fa-car"></i> <%=property.parking_spaces%>
+            </span>
+            <h6>  <p class="mb-2 mt-2"><%=property.address%></p></h6>
+        </div>
+    </div>
+
+    </div>
+<%end%>

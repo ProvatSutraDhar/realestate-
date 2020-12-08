@@ -61,7 +61,12 @@
         <div class="col-4">
           <%= render 'properties/agent_details'%>
         </div>
-
       </div>
-
+    </div>
+    <div class="mb-5 mt-5">
+        <div class="container">
+          <div class="row">
+            <%= render "properties/list", properties: @agent_properties%>
+          </div>
+        </div>
     </div>
