@@ -7,6 +7,13 @@ require("@rails/ujs").start()
 var jQuery = require("jquery")
 		global.$ = jQuery = jQuery
     window.$ = window.jQuery = jQuery
+
+		import toastr from 'toastr';
+		toastr.options = {
+			progressBar: true
+		}
+		global.toastr = toastr
+
 require("./includes/property");
 
 // Uncomment to copy all static images under ../images to the output folder and reference
@@ -16,3 +23,5 @@ require("./includes/property");
 // const images = require.context('../images', true)
 // const imagePath = (name) => images(name, true)
 import "@fortawesome/fontawesome-free/js/all";
+
+import './src/application.scss'
