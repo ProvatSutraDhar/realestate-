@@ -9,22 +9,28 @@
       <div class="col-md-8">
         <div class="row">
             <div class="col-lg-6">
-                <p class="mb-0"><%= @property.address %>  </p>
-                <p class="h2">   <%= @property.price > 0 ? number_to_currency(@property.price, precision: 0) : "For Sell"%></p>
+                <strong class="mb-2"><%= @property.for_sell? ? "For Sale" : "For Rent" %>  </strong>
+                <p class="mb-0 text-secondary"><%= @property.address %>  </p>
+                <%if @property.for_sell%>
+                <p class="h2">   <%= @property.price > 0 ? number_to_currency(@property.price, precision: 0) : " Offer for accepted"%></p>
+                <%else%>
+                <p class="h2">   <%= @property.price > 0 ? number_to_currency(@property.price, precision: 0) : "Offer for enquireis"%>/month</p>
+                <%end%>
+
             </div>
                 <div class="col-lg-6 text-center  ">
-                  <div class="row bg-light  p-3">
+                  <div class="row bg-light p-1">
                       <div class="col-sm-4">
                         <p class="mb-0"> <i class="fas fa-bed"></i> </p>
-                        <span class="lead">   <%= @property.rooms %> </span>
+                        <span class="lead"> <small>  <%= @property.rooms %> Rooms</small></span>
                       </div>
                       <div class="col-sm-4">
                         <p class="mb-0">   <i class="fas fa-sink"></i></p>
-                        <span class="lead"> <%= @property.bathrooms %> </span>
+                        <span class="lead"> <small><%= @property.bathrooms %> Bathrooms</small> </span>
                       </div>
                       <div class="col-sm-4">
                         <p class="mb-0">    <span><i class="fas fa-car"></i></span></p>
-                        <span class="lead"> <%= @property.parking_spaces %> </span>
+                        <span class="lead"> <small><%= @property.parking_spaces %>  Parking </small> </span>
                       </div>
                   </div>
               </div>
@@ -32,8 +38,11 @@
 
         <div class="row border-bottom border-top mt-5 mb-5 pt-3 pb-3">
           <div class="col-sm-6">
-            <%= link_to "Est. Monthly Repayments of #{number_to_currency((@property.price - (@property.price * 0.1))/ 360 , precision: 0)}", "#",class:"text-success"%>
-            <p ></p>
+              <%if @property.for_sell?%>
+        <strong> <%= link_to "Est. Monthly Repayments of #{number_to_currency((@property.price - (@property.price * 0.1))/ 360 , precision: 0)}", "#",class:"text-success"%> </strong>
+              <%else%>
+            <strong class="text-success">Available from  <%=@property.available_date.day.ordinalize%> <%= @property.available_date.strftime('%b %Y')%></strong>
+              <%end%>
           </div>
 
           <div class="col-sm-6 text-right">
@@ -67,6 +76,13 @@
         <div class="container">
           <div class="row">
             <%= render "properties/list", properties: @agent_properties%>
+            <iframe
+                width="600"
+                height="450"
+                frameborder="0" style="border:0"
+                src="https://www.google.com/maps/embed/v1/place?key=AIzaSyDRY-bfoO8W4Uj8szlif0HiMoI5CSLiopw
+                  &q=Space+Needle,Seattle+WA" allowfullscreen>
+              </iframe>
           </div>
         </div>
     </div>
